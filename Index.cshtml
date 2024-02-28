@@ -1,0 +1,73 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+<style>
+    body{
+        background-color: #EDE7D9;
+    }
+    div{
+        background-color: #D5A021;
+        border-radius: 50px;
+        width:300px;
+        
+    }
+    ul{
+        color: #EDE7D9;
+        background-color: #4B4237;
+        border-radius: 50px;
+    }
+    h1{
+        color: #4B4237;
+        border-radius:10px;
+        font-family:'Yu Gothic UI';
+    }
+
+    input {
+        color: #4B4237;
+        border-radius: 50px;
+        font-size: 100px;
+        display: flex;
+        justify-content: space-between;
+    }
+    a{
+        background-color: #4B4237;
+        text-decoration:none;
+        color: #EDE7D9;
+        font-size:20px;
+
+    }
+
+
+</style>
+
+<div class="text-center">
+    <h1 class="display-4">SEARCH ENGINE</h1> 
+</div>
+
+<form method="post" asp-page="Index">
+  <div class="form-group">
+    <label asp-for="Word"></label>
+    <input asp-for="Word" class="form-control" placeholder="Type Something.." autocomplete="off" required/>
+  </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<p>
+    @foreach (var character in IndexModel.itemList)
+    {
+        <ul><a href="@character" target="_blank">@character</a></ul>
+    }
+</p>
+
+<p>
+    <h2>History</h2>
+    @foreach (var item in IndexModel.history)
+    {
+        <ul>@item</ul>
+    }
+    @if (IndexModel.history.ToString() == "")
+    {
+        <p>Search for Something, History is empty</p>
+    }
+</p>
